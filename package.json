@@ -4,14 +4,14 @@
   "scripts": {
     "dev:clean": "rm -rf exampleSite/public && rm -rf exampleSite/resources",
     "dev:hugo:watch": "npm run dev:clean && hugo server -s exampleSite/ -t . -D --navigateToChanged",
-    "dev:tw:watch": "@tailwindcss -i ./assets/css/tw.css -o ./assets/css/main.css --watch ",
+    "dev:tw:watch": "tailwindcss -i ./assets/css/tw.css -o ./assets/css/main.css --watch ",
     "dev:watch": "concurrently \"npm:dev:tw:watch\" \"npm:dev:hugo:watch\"",
 
     "clean": "rm -rf public && rm -rf resources",
     "hugo:build": "npm run clean && hugo",
     "hugo:watch": "npm run clean && hugo server -D",
-    "tw:build": "@tailwindcss -i ./themes/bio-x/assets/css/tw.css -o ./themes/bio-x/assets/css/main.css --minify",
-    "tw:watch": "@tailwindcss -i ./themes/bio-x/assets/css/tw.css -o ./themes/bio-x/assets/css/main.css --watch",
+    "tw:build": "tailwindcss -i ./themes/bio-x/assets/css/tw.css -o ./themes/bio-x/assets/css/main.css --minify",
+    "tw:watch": "tailwindcss -i ./themes/bio-x/assets/css/tw.css -o ./themes/bio-x/assets/css/main.css --watch",
 
     "build": "npm run tw:build && npm run hugo:build",
     "watch": "concurrently \"npm:tw:watch\" \"npm:hugo:watch\""
