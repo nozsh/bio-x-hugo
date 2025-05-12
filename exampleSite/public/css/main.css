@@ -1339,6 +1339,9 @@
   .h-50 {
     height: calc(var(--spacing) * 50);
   }
+  .h-screen {
+    height: 100vh;
+  }
   .w-5 {
     width: calc(var(--spacing) * 5);
   }
