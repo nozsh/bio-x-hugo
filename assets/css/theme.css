@@ -1,0 +1,144 @@
+/*
+  Utils
+*/
+
+:root {
+  background-color: rgb(17 17 17 / 1);
+  --accent-acid: #ccff00;
+  --accent-o: var(--accent-acid);
+}
+
+blockquote p::before,
+blockquote p::after {
+  content: none !important;
+}
+
+.prose a {
+  text-decoration: none;
+}
+
+.prose a:not(.btn) {
+  transition: color 200ms;
+  box-shadow: 0 1px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.prose a:not(.btn):hover {
+  color: var(--accent-o);
+}
+
+@layer base {
+  .prose h2:not(:first-child),
+  .prose h3:not(:first-child),
+  .prose h4:not(:first-child) {
+    margin-top: 0.5rem !important;
+  }
+
+  .prose h2:not(:last-child),
+  .prose h3:not(:last-child),
+  .prose h4:not(:last-child) {
+    margin-bottom: 0.8rem !important;
+  }
+}
+
+@layer base {
+  p:not(:first-child) {
+    margin-top: 0.5rem !important;
+  }
+
+  p:not(:last-child) {
+    margin-bottom: 0.5rem !important;
+  }
+}
+
+@layer utilities {
+  .prose a {
+    font-weight: inherit;
+  }
+
+  .prose hr {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+}
+
+@layer components {
+  .tooltip:after {
+    @apply hidden;
+  }
+}
+
+@layer utilities {
+  @media (min-width: 64rem) {
+    .lg\:tooltip-close > .tooltip-content {
+      opacity: 0 !important;
+      --tt-pos: 0.25rem !important;
+    }
+    .lg\:tooltip-close:hover > .tooltip-content {
+      opacity: 100% !important;
+      --tt-pos: 0rem !important;
+    }
+  }
+}
+
+/* 
+  Profile Background
+*/
+
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+#background-image {
+  z-index: -8999;
+}
+
+#background-custom {
+  z-index: -8990;
+}
+
+#background-custom_before {
+  z-index: -8985;
+}
+
+#background-solid {
+  z-index: -8980;
+}
+
+/*
+  Lite YT
+*/
+
+#fallbackPlaceholder {
+  pointer-events: none;
+}
+
+/*
+  Medium Zoom
+*/
+
+.medium-zoom-overlay {
+  background: rgb(17 17 17 / 1) !important;
+  z-index: 9000;
+}
+
+.medium-zoom-image--opened {
+  z-index: 9001;
+  border-radius: 0;
+}
+
+img.medium-zoom-image--opened[loading="eager"],
+img.gallery-image.medium-zoom-image--opened {
+  border-radius: 0;
+  border: none;
+}
+
+.medium-zoom-image {
+  object-fit: contain;
+}

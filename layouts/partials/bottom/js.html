@@ -1,0 +1,42 @@
+{{- with resources.Get "js/main.js" }}
+  {{- if eq hugo.Environment "development" }}
+    {{- with . | js.Build }}
+      <script src="{{ .RelPermalink }}?v={{ time.Now.Unix }}" defer></script>
+    {{- end }}
+  {{- else }}
+    {{- $opts := dict "minify" true }}
+    {{- with . | js.Build $opts | fingerprint }}
+      <script src="{{ .RelPermalink }}?v={{ time.Now.Unix }}" integrity="{{- .Data.Integrity }}" crossorigin="anonymous" defer></script>
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- with resources.Get "js/lite-youtube.min.js" }}
+  {{- if eq hugo.Environment "development" }}
+    {{- with . }}
+      <script type="module" src="{{ .RelPermalink }}?v=1.8.1"></script>
+    {{- end }}
+  {{- else }}
+    {{- $opts := dict "minify" true }}
+    {{- with . | fingerprint }}
+      <script type="module" src="{{ .RelPermalink }}?v=1.8.1" integrity="{{- .Data.Integrity }}" crossorigin="anonymous"></script>
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- with resources.Get "js/medium-zoom.min.js" }}
+  {{- if eq hugo.Environment "development" }}
+    {{- with . }}
+      <script src="{{ .RelPermalink }}?v=1.1.0"></script>
+    {{- end }}
+  {{- else }}
+    {{- $opts := dict "minify" true }}
+    {{- with . | fingerprint }}
+      <script src="{{ .RelPermalink }}?v=1.1.0" integrity="{{- .Data.Integrity }}" crossorigin="anonymous"></script>
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+<script>
+  mediumZoom(".zoom");
+</script>

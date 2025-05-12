@@ -1,0 +1,54 @@
+{{- if .Params.Background.Image }}
+  <div id="background-image" class="background"></div>
+
+  <style>
+    #background-image {
+      background: url('{{ (path.Join .RelPermalink .Params.Background.Image) | absURL }}');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      {{ if .Params.Background.ImageOpacity }}opacity: {{ .Params.Background.ImageOpacity }};{{ end }}
+      {{ if .Params.Background.ImageBlur }}filter: blur({{ .Params.Background.ImageBlur }}px);{{ end }}
+    }
+  </style>
+{{- end}}
+
+
+{{- if .Params.Background.Custom }}
+<div id="background-custom" class="background"></div>
+
+<style>
+  #background-custom {
+    {{ .Params.Background.Custom | safeCSS }}
+    {{ if .Params.Background.CustomOpacity }}opacity: {{ .Params.Background.CustomOpacity }};{{ end }}
+  }
+</style>
+{{- end}}
+
+
+{{- if .Params.Background.CustomPseudoBefore }}
+<div id="background-custom_before" class="background"></div>
+
+<style>
+  #background-custom_before::before {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    content: '';
+    {{ if .Params.Background.CustomPseudoBeforeOpacity }}opacity: {{ .Params.Background.CustomPseudoBeforeOpacity }};{{ end }}
+    {{ .Params.Background.CustomPseudoBefore | safeCSS }}
+  }
+</style>
+{{- end}}
+
+
+{{- if .Params.Background.Solid }}
+<div id="background-solid" class="background"></div>
+
+<style>
+  #background-solid {
+    background: {{ .Params.Background.Solid | safeCSS }};
+    {{ if .Params.Background.SolidOpacity }}opacity: {{ .Params.Background.SolidOpacity }};{{ end }}
+  }
+</style>
+{{- end}}

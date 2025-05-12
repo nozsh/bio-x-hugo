@@ -1,0 +1,22 @@
+{{ $icon := .icon }}
+{{ $class := .class }}
+{{ $dataTip := .dataTip }}
+{{ $page := .page }}
+
+<div class="flex tooltip tooltip-open lg:tooltip-close lg:tooltip-left [--tt-tail:0px] [--tt-border:0] [--tt-bg:oklch(var(--n)/1)] cursor-default bg-base-300/35 border-1 border-gray-500/35 p-4 rounded-xl {{ if $page.Params.Background.Image }}backdrop-blur-lg{{ end }} bg-clip-padding {{ .class }}" data-tip="">
+
+  <div class="tooltip-content bg-base-300/35 border-1 border-gray-500/35 px-4 rounded-xl {{ if $page.Params.Background.Image }}backdrop-blur-lg{{ end }}">
+    <div class="text-md font-semibold">{{ .dataTip }}</div>
+  </div>
+
+  <div class="inline-flex gap-3 items-center min-w-0 w-full">
+    <div class="inline-flex gap-3 {{ with .iconClass }}{{ . }}{{ end }}">
+      {{ .icon | safeHTML }}
+    </div>
+    <div class="overflow-x-auto no-scrollbar">
+      <span class="whitespace-nowrap text-lg font-semibold">
+        {{ with .name }}{{ . }}{{ else }}{{ .value }}{{ end }}
+      </span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+{{- if .Params.Image.Pic }}
+  <div class="{{- if .Params.Image.ContainerClass -}}{{ .Params.Image.ContainerClass }}{{- end -}}">
+    {{- $width := ""}}
+    {{- $height := ""}}
+    {{- $alt := (.Params.Image.alt | default "Profile Picture" | plainify) }}
+    {{/*  {{- $class := (.Params.Image.class | plainify) }}  */}}
+
+    <img src="{{ (path.Join .RelPermalink .Params.Image.Pic) | absURL }}"
+    alt="{{ $alt }}"
+    width="{{ $width }}"
+    height="{{ $height }}"
+    class="{{ if .Params.Image.Class }}{{ .Params.Image.Class }}{{ end }}">
+  </div>
+{{- end }}

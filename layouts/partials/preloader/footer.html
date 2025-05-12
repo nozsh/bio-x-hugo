@@ -1,0 +1,22 @@
+<script>
+  const MIN_DISPLAY_TIME = 500;
+
+  function onWindowLoad() {
+    const preloader = document.getElementById('preloader');
+
+    setTimeout(hidePreloader, MIN_DISPLAY_TIME);
+
+    function hidePreloader() {
+      preloader.classList.add('hidden');
+      preloader.addEventListener('transitionend', onTransitionEnd);
+    }
+
+    function onTransitionEnd() {
+      preloader.removeEventListener('transitionend', onTransitionEnd);
+      preloader.remove();
+      document.body.classList.remove('no-scroll');
+    }
+  }
+
+  window.addEventListener('load', onWindowLoad);
+</script>

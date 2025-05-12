@@ -1,0 +1,7 @@
+{{- if .Params.Desc.Text }}
+<div class="{{ if .Params.Desc.ContainerClass }}{{ .Params.Desc.ContainerClass }}{{ end }}">
+  <span class="{{ if .Params.Desc.Class }}{{ .Params.Desc.Class }}{{ end }}">
+    {{ .Params.Desc.Text | safeHTML }}
+  </span>
+</div>
+{{- end}}

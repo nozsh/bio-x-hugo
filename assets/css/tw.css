@@ -1,0 +1,18 @@
+@import "tailwindcss" source(none);
+@source "../../layouts/**/*.{html,js,md}";
+@source "../../static/**/*.{html,js,md}";
+@source "../../exampleSite/layouts/**/*.{html,js,md}";
+@source "../../exampleSite/static/**/*.{html,js,md}";
+
+@source "../../../../content/**/*.{html,js,md}";
+@source "../../exampleSite/content/**/*.{html,js,md}";
+
+@utility no-scrollbar {
+  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+}
+
+@plugin "@tailwindcss/typography";
+@plugin "daisyui" {
+  themes: dim --default;
+}
+@import "./theme.css";

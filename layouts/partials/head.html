@@ -1,0 +1,119 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="darkreader-lock">
+
+<!--  ico (32x32) -->
+{{ $favicon := "" }}
+{{- if .Params.Assets.favicon }}
+  {{ $favicon = (path.Join .RelPermalink .Params.Assets.favicon) }}
+{{- end}}
+
+{{ if .Params.Assets.favicon_on }}
+  <link rel="icon shortcut" href="{{ $favicon | default site.Params.assets.favicon | absURL }}" sizes="32x32">
+{{ end }}
+
+<!-- svg -->
+{{ $svg := "" }}
+{{- if .Params.Assets.svg }}
+  {{ $svg = (path.Join .RelPermalink .Params.Assets.svg) }}
+{{- end}}
+
+{{ if .Params.Assets.svg_on }}
+  <link rel="icon" href="{{ $svg | default site.Params.assets.safari_pinned_tab | absURL }}" type="image/svg+xml">
+{{ end }}
+
+<!-- png (16x16) -->
+{{ $favicon16x16_png := "" }}
+{{- if .Params.Assets.favicon16x16_png }}
+  {{ $favicon16x16_png = (path.Join .RelPermalink .Params.Assets.favicon16x16_png) }}
+{{- end}}
+
+{{ if .Params.Assets.favicon16x16_png_on }}
+  <link rel="icon" href="{{ $favicon16x16_png | default site.Params.assets.favicon16x16 | absURL }}" type="image/png" sizes="16x16">
+{{ end }}
+
+<!-- png (32x32) -->
+{{ $favicon32x32_png := "" }}
+{{- if .Params.Assets.favicon32x32_png }}
+  {{ $favicon32x32_png = (path.Join .RelPermalink .Params.Assets.favicon32x32_png) }}
+{{- end}}
+
+{{ if .Params.Assets.favicon32x32_png_on }}
+  <link rel="icon" href="{{ $favicon32x32_png | default site.Params.assets.favicon32x32 | absURL }}" type="image/png" sizes="32x32">
+{{ end }}
+
+<!-- png (180x180) -->
+{{ $apple_touch_icon_180x180_png := "" }}
+{{- if .Params.Assets.apple_touch_icon_180x180_png }}
+  {{ $apple_touch_icon_180x180_png = (path.Join .RelPermalink .Params.Assets.apple_touch_icon_180x180_png) }}
+{{- end}}
+
+{{ if .Params.Assets.apple_touch_icon_180x180_png_on }}
+  <link rel="apple-touch-icon" href="{{ $apple_touch_icon_180x180_png | default site.Params.assets.apple_touch_icon | absURL }}" sizes="180x180">
+{{ end }}
+
+
+
+<meta property="og:title" content="{{ if .Params.Bio_text }}bio@{{ .Params.Title }}{{ else }}{{ .Params.Title }}{{ end }}">
+<meta name="twitter:title" content="{{ if .Params.Bio_text }}bio@{{ .Params.Title }}{{ else }}{{ .Params.Title }}{{ end }}">
+<meta itemprop="name" content="{{ if .Params.Bio_text }}bio@{{ .Params.Title }}{{ else }}{{ .Params.Title }}{{ end }}">
+
+{{ if .Params.Desc.Text }}
+  <meta name="description" content="{{ .Params.Desc.Text }}">
+  <meta name="twitter:description" content="{{ .Params.Desc.Text }}">
+  <meta property="og:description" content="{{ .Params.Desc.Text }}">
+  <meta itemprop="description" content="{{ .Params.Desc.Text }}">
+{{ end }}
+
+<meta property="og:type" content="website">
+
+{{ if .Params.Twitter_card }}
+  <meta name="twitter:card" content="{{ .Params.Twitter_card }}">
+{{ end }}
+
+{{ if .Params.Cover.Pic }}
+  <meta property="og:image" content="{{ (path.Join .RelPermalink .Params.Cover.Pic) | absURL }}">
+  <meta name="twitter:image" content="{{ (path.Join .RelPermalink .Params.Cover.Pic) | absURL }}">
+{{ end }}
+
+{{ if .Params.Cover.Alt }}
+  <meta property="og:image:alt" content="{{ .Params.Cover.Alt }}">
+  <meta name="twitter:image:alt" content="{{ .Params.Cover.Alt }}">
+{{ end }}
+
+{{/*  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>  */}}
+
+<title>
+    {{ if .IsHome }}
+      {{ site.Title }}
+    {{ else if eq .Type "profile" }}
+      bio@{{ .Title }}
+    {{ else if eq .Type "pcspecs" }}
+      pc@{{ .Title }}
+    {{ else }}
+      {{ .Title }} - {{ .Site.Title }}
+    {{ end }}
+</title>
+
+{{ $logo := (site.Params.Assets.preloadLogo | absURL) }}
+{{ if and (eq .Type "pcspecs") (or .Params.Specs.Type.Pc .Params.Specs.Type.Monoblock .Params.Specs.Type.NotebookLaptop) }}
+  {{ if .Params.Specs.Type.Pc }}
+    {{ $logo = (site.Params.Assets.preloadPCLogo | absURL) }}
+  {{ else if .Params.Specs.Type.Monoblock }}
+    {{ $logo = (site.Params.Assets.preloadMonoBlockLogo | absURL) }}
+  {{ else }}
+    {{ $logo = (site.Params.Assets.preloadNotebookLaptoLogo | absURL) }}
+  {{ end }}
+{{ else }}
+  {{ $logo = (site.Params.Assets.preloadLogo | absURL) }}
+{{ end }}
+
+{{ if and (site.Params.Preloader) (.Params.Preloader) }}
+  <link rel="preload" as="image" href="{{ $logo }}">
+  {{ partial "preloader/head.html" (dict "logo" $logo ) }}
+{{ end }}
+
+{{- partial "head/head-styles.html" -}}
+
+{{ partialCached "head/css.html" . }}

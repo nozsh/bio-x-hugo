@@ -1,0 +1,33 @@
+baseURL: https://example.org/
+languageCode: en
+defaultContentLanguage: en
+title: My New Hugo Site
+theme: ["bio-x"]
+themesDir: ".."
+
+params:
+  preloader: true
+  assets:
+    favicon: "fav/favicon.ico"
+    favicon16x16: "fav/favicon-16px.png"
+    favicon32x32: "fav/favicon-32px.png"
+    apple_touch_icon: "fav/favicon-180px.png"
+    safari_pinned_tab: "fav/favicon.svg"
+    preloadLogo: "game-icons--bandit__n3gzQK.svg"
+    preloadPCLogo: "simple-icons--pcgamingwiki__pQs8FJ.svg"
+    preloadMonoBlockLogo: "pepicons-pop--monitor__h4Rmk9.svg"
+    preloadNotebookLaptoLogo: "game-icons--laptop__lcW4j6.svg"
+
+disableKinds:
+  - taxonomy
+  - term
+  - RSS
+  - sitemap
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+permalinks:
+  bio: "/:contentbasename"

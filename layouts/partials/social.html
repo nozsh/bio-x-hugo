@@ -1,0 +1,25 @@
+{{ with .Params.social }}
+  {{ if .show }}
+    {{- $sp := . }}
+
+    {{- $href := ""}}
+    {{- $rel := "noreferrer nofollow noopener"}}
+
+    <div class="my-3 flex justify-center items-center gap-2{{ if .containerClass }} {{ .containerClass }}{{ end }}">
+      {{- range $item := .links -}}
+
+        {{- $target := "" -}}
+        {{ if $item.newTab }}
+          {{- $target = "moredetail" -}}
+        {{ end }}
+
+        <a href="{{ $item.url }}" style="{{ if $item.style }}{{ $item.style | safeCSS }}{{ end }}"
+          target="{{ $target }}" rel="{{ $rel }}"
+          class="tooltip tooltip-bottom{{ if $sp.classForAllEl }} {{ $sp.classForAllEl }}{{ end }}{{ if $item.class }} {{ $item.class }}{{ end }}"
+          data-tip="{{ $item.name | title }}">
+          {{- $item.icon | safeHTML -}}
+        </a>
+      {{- end -}}
+    </div>
+  {{ end }}
+{{ end }}

@@ -1,0 +1,27 @@
+{{ define "main" }}
+  <div class="flex justify-center">
+    <div class="container{{ if .Params.ContainerClass }} {{ .Params.ContainerClass }}{{ end }}">
+      <div class="mt-8 p-4">
+
+        <div class="mt-4 flex flex-col gap-10 lg:gap-4{{if .Params.ContentClass }} {{ .Params.ContentClass }}{{ end }}">
+          {{- partial "pcspecs/spec.html" . -}}
+
+          {{ if gt (len .Content) 0 }}
+            <div class="prose flex justify-center -mt-6 -mb-1 lg:mt-0 lg:mb-0"><hr class="w-100"></div>
+
+            <div class="lg:mt-2 prose tooltip tooltip-open lg:tooltip-close tooltip-top [--tt-tail:0px] [--tt-border:0] [--tt-bg:oklch(var(--n)/1)] max-w-none w-full bg-base-300/35 border-1 border-gray-500/35 p-4 rounded-xl {{ if .Params.Background.Image }}backdrop-blur-lg{{ end }}">
+              <div class="tooltip-content bg-base-300/35 border-1 border-gray-500/35 px-4 rounded-xl {{ if .Params.Background.Image }}backdrop-blur-lg{{ end }}">
+                <div class="text-md font-semibold">Information</div>
+              </div>
+              {{ .Content }}
+            </div>
+          {{ end }}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  {{- partial "background.html" . -}}
+
+{{ end }}

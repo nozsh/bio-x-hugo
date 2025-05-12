@@ -1,0 +1,10 @@
+{{/*  <footer>
+  <p>Copyright {{ now.Year }}. All rights reserved.</p>
+</footer>  */}}
+
+
+{{ partialCached "bottom/js.html" . }}
+
+{{ if and (site.Params.Preloader) (.Params.Preloader) }}
+  {{ partial "preloader/footer.html" }}
+{{ end }}

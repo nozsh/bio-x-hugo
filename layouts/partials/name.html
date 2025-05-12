@@ -1,0 +1,7 @@
+{{- if .Params.Name.Text }}
+<div class="{{ if .Params.Name.ContainerClass }} {{ .Params.Name.ContainerClass }}{{ end }}">
+  <h1 class="text-lg{{ if .Params.Name.Class }} {{ .Params.Name.Class }}{{ end }}">
+    {{ .Params.Name.Text | safeHTML }}
+  </h1>
+</div>
+{{- end}}

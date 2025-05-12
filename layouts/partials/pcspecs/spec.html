@@ -1,0 +1,143 @@
+{{ $mappings := dict 
+  "notebookLaptopModel" (dict 
+    "icon" (partial "icons/pcspecs/typeof/notebook-laptop.html" .)
+    "class" ""
+    "dataTip" "Motherboard"
+  )
+  "os" (dict 
+    "windows" (dict "icon" (partial "icons/pcspecs/logo/windows.html" .) "class" "bg-linear-to-r from-[#004fe1]/50 via-[#004fe1]/30 via-30% to-transparent" "dataTip" "OS")
+    "macos" (dict "icon" (partial "icons/pcspecs/logo/macos.html" .) "class" "bg-linear-to-r from-[#000000]/50 via-[#000000]/30 via-30% to-transparent" "dataTip" "OS")
+    "linux" (dict "icon" (partial "icons/pcspecs/logo/linux.html" .) "class" "bg-linear-to-r from-[#5c564e]/50 via-[#5c564e]/30 via-30% to-transparent" "dataTip" "OS")
+  )
+  
+
+  "mobo" (dict 
+    "icon" (partial "icons/pcspecs/mobo.html" .)
+    "class" ""
+    "dataTip" "Motherboard"
+  )
+  "cpu" (dict 
+    "intel" (dict "icon" (partial "icons/pcspecs/cpu.html" .) "class" "bg-linear-to-r from-[#0068B5]/50 via-[#0068B5]/30 via-30% to-transparent" "dataTip" "CPU")
+    "amd" (dict "icon" (partial "icons/pcspecs/cpu.html" .) "class" "bg-linear-to-r from-[#ef0707]/50 via-[#ef0707]/30 via-30% to-transparent" "dataTip" "CPU")
+    "arm" (dict "icon" (partial "icons/pcspecs/cpu.html" .) "class" "bg-linear-to-r from-[#333E48]/50 via-[#333E48]/30 via-30% to-transparent" "dataTip" "CPU")
+  )
+  "cpuCooling" (dict 
+    "icon" (partial "icons/pcspecs/cold.html" .)
+    "class" ""
+    "dataTip" "CPU Cooling"
+  )
+
+
+  "ram" (dict 
+    "icon" (partial "icons/pcspecs/ram.html" .)
+    "class" ""
+    "dataTip" "RAM"
+  )
+  "ramCooling" (dict 
+    "icon" (partial "icons/pcspecs/cold.html" .)
+    "class" ""
+    "dataTip" "RAM Cooling"
+  )
+
+
+  "gpu" (dict 
+    "nvidia" (dict "icon" (partial "icons/pcspecs/logo/nvidia.html" .) "class" "bg-linear-to-r from-[#76B900]/50 via-[#76B900]/30 via-30% to-transparent" "dataTip" "GPU")
+    "amd" (dict "icon" (partial "icons/pcspecs/logo/amd.html" .) "class" "bg-linear-to-r from-[#ef0707]/50 via-[#ef0707]/30 via-30% to-transparent" "dataTip" "GPU")
+    "intel" (dict "icon" (partial "icons/pcspecs/logo/intel.html" .) "class" "bg-linear-to-r from-[#0068B5]/50 via-[#0068B5]/30 via-30% to-transparent" "dataTip" "GPU")
+  )
+  "gpuCooling" (dict 
+    "icon" (partial "icons/pcspecs/cold.html" .)
+    "class" ""
+    "dataTip" "GPU Cooling"
+  )
+
+
+  "drive" (dict 
+    "ssd" (dict "icon" (partial "icons/pcspecs/drive/ssd.html" .) "class" "" "dataTip" "SSD")
+    "hdd" (dict "icon" (partial "icons/pcspecs/drive/hdd.html" .) "class" "" "dataTip" "HDD")
+  )
+
+  "driveCooling" (dict 
+    "ssd" (dict "icon" (print (partial "icons/pcspecs/cold.html" .) (partial "icons/pcspecs/drive/ssd.html" .)) "class" "" "dataTip" "SSD Cooling")
+  )
+
+
+  "pci" (dict 
+    "icon" (partial "icons/pcspecs/pci.html" .)
+    "class" ""
+    "dataTip" "PCI Slot"
+  )
+
+
+  "box" (dict 
+    "icon" (partial "icons/pcspecs/box.html" .)
+    "class" ""
+    "dataTip" "BOX/CASE"
+  )
+  "fan" (dict 
+    "icon" (partial "icons/pcspecs/fan.html" .)
+    "class" ""
+    "dataTip" "BOX FAN"
+  )
+
+
+  "psu" (dict 
+    "icon" (partial "icons/pcspecs/psu.html" .)
+    "class" ""
+    "dataTip" "Power Supply Unit"
+  )
+
+
+  "display" (dict 
+    "icon" (partial "icons/pcspecs/display.html" .)
+    "class" ""
+    "dataTip" "Display/Monitor"
+  )
+
+
+  "keyboard" (dict 
+    "icon" (partial "icons/pcspecs/keyboard.html" .)
+    "class" ""
+    "dataTip" "Keyboard"
+  )
+  "mouse" (dict 
+    "icon" (partial "icons/pcspecs/mouse.html" .)
+    "class" ""
+    "dataTip" "Mouse"
+  )
+
+
+  "speakers" (dict 
+    "icon" (partial "icons/pcspecs/speakers.html" .)
+    "class" ""
+    "dataTip" "Speakers"
+  )
+  "headphones" (dict 
+    "icon" (partial "icons/pcspecs/headphones.html" .)
+    "class" ""
+    "dataTip" "Headphones"
+  )
+  "mic" (dict 
+    "icon" (partial "icons/pcspecs/mic.html" .)
+    "class" ""
+    "dataTip" "Microphone"
+  )
+  "cam" (dict 
+    "icon" (partial "icons/pcspecs/cam.html" .)
+    "class" ""
+    "dataTip" "Camera"
+  )
+  "audioGear" (dict 
+    "icon" (partial "icons/pcspecs/audioGear.html" .)
+    "class" ""
+    "dataTip" "Audio stuff"
+  )
+}}
+
+{{ partial "pcspecs/typeof-pc.html" .}}
+
+{{ partial "pcspecs/spec-mapping.html" (dict 
+"specs" .Params.specs
+"mappings" $mappings
+"page" .
+) }}

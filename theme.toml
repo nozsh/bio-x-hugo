@@ -1,0 +1,15 @@
+name = 'bio-x'
+license = 'MIT'
+licenselink = 'https://github.com/nozsh/bio-x-hugo/LICENSE'
+description = 'Biolink like hugo theme'
+
+# The home page of the theme, where the source can be found
+homepage = 'https://github.com/nozsh/bio-x-hugo'
+
+# Taxonomy terms
+tags = ['bio', 'biolink']
+
+# If the theme has a single author
+[author]
+  name = 'nozsh'
+  homepage = 'https://github.com/nozsh/bio-x-hugo'

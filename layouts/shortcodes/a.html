@@ -1,0 +1,3 @@
+<a class='{{ if .Get "class" }}{{ .Get "class" }}{{ end }}' href='{{ .Get "href" }}' rel='{{ .Get "rel" }}' target='{{ .Get "target" }}'>
+  {{ .Get "text" | .Page.RenderString }}
+</a>

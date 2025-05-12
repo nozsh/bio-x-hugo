@@ -1,0 +1,188 @@
+{{ $specs := .specs }}
+{{ $mappings := .mappings }}
+
+{{ $page := .page }}
+
+{{ $categoryOrder := slice
+  (dict "key" "notebookLaptopModel" "type" "single") 
+  (dict "key" "os" "type" "branded" "brandOrder" (slice "windows" "macos" "linux"))
+
+  (dict "type" "divider")
+
+  (dict "key" "mobo" "type" "single") 
+  (dict "key" "cpu" "type" "branded" "brandOrder" (slice "intel" "amd" "arm"))
+  (dict "key" "cpuCooling" "type" "list")
+
+  (dict "type" "divider")
+
+  (dict "key" "ram" "type" "list")
+  (dict "key" "ramCooling" "type" "list")
+
+  (dict "type" "divider")
+
+  (dict "key" "gpu" "type" "branded" "brandOrder" (slice "nvidia" "amd" "intel"))
+  (dict "key" "gpuCooling" "type" "list")
+
+  (dict "type" "divider")
+
+  (dict "key" "drive" "type" "branded" "brandOrder" (slice "ssd" "hdd"))
+
+  (dict "key" "driveCooling" "type" "branded" "brandOrder" (slice "ssd"))
+
+  (dict "type" "divider")
+
+  (dict "key" "pci" "type" "list")
+  
+  (dict "type" "divider")
+
+  (dict "key" "box" "type" "single") 
+  (dict "key" "fan" "type" "list")
+
+  (dict "type" "divider")
+  
+  (dict "key" "psu" "type" "list")
+
+  (dict "type" "divider")
+
+  (dict "key" "display" "type" "list")
+
+  (dict "type" "divider")
+
+  (dict "key" "keyboard" "type" "list")
+  (dict "key" "mouse" "type" "list")
+
+  (dict "type" "divider")
+
+  (dict "key" "speakers" "type" "list")
+  (dict "key" "headphones" "type" "list")
+  (dict "key" "mic" "type" "list")
+  (dict "key" "cam" "type" "list")
+  (dict "key" "audioGear" "type" "list")
+}}
+
+{{ $sections := slice }}
+{{ $dividers := slice }}
+
+{{ range $index, $categoryConfig := $categoryOrder }}
+  {{ if eq $categoryConfig.type "divider" }}
+    {{ $dividers = $dividers | append $index }}
+    {{ continue }}
+  {{ end }}
+
+  {{ $category := $categoryConfig.key }}
+  {{ $data := index $specs $category }}
+  {{ if not $data }}{{ continue }}{{ end }}
+
+  {{ $hasContent := false }}
+  
+  {{ if eq $categoryConfig.type "single" }}
+    {{ with index $mappings $category }}
+      {{ if $data }}
+        {{ $hasContent = true }}
+      {{ end }}
+    {{ end }}
+
+  {{ else if eq $categoryConfig.type "list" }}
+    {{ range $item := $data }}
+      {{ if and $item.name (ne $item.name "") }}
+        {{ $hasContent = true }}
+        {{ break }}
+      {{ end }}
+    {{ end }}
+
+  {{ else if eq $categoryConfig.type "branded" }}
+    {{ range $brand := $categoryConfig.brandOrder }}
+      {{ $items := index $data $brand }}
+      {{ $config := index (index $mappings $category) $brand }}
+      {{ if and $config $items }}
+        {{ range $items }}
+          {{ if and .name (ne .name "") }}
+            {{ $hasContent = true }}
+            {{ break }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+      {{ if $hasContent }}{{ break }}{{ end }}
+    {{ end }}
+  {{ end }}
+
+  {{ if $hasContent }}
+    {{ $sections = $sections | append (dict 
+      "index" $index
+      "config" $categoryConfig
+      "data" $data
+    ) }}
+  {{ end }}
+{{ end }}
+
+{{/* Render sections with smart dividers */}}
+{{ range $i, $section := $sections }}
+  {{ if gt $i 0 }}
+    {{ $prevIndex := (index $sections (sub $i 1)).index }}
+    {{ $currentIndex := $section.index }}
+    {{ $hasDivider := false }}
+    
+    {{ range $dividerIndex := $dividers }}
+      {{ if and (gt $dividerIndex $prevIndex) (lt $dividerIndex $currentIndex) }}
+        {{ $hasDivider = true }}
+        {{ break }}
+      {{ end }}
+    {{ end }}
+
+    {{ if $hasDivider }}
+      <div class="prose flex justify-center -mt-6 -mb-1 lg:mt-0 lg:mb-0">
+        <hr class="w-50">
+      </div>
+    {{ end }}
+  {{ end }}
+
+  {{/* Render section content */}}
+  {{ $categoryConfig := $section.config }}
+  {{ $data := $section.data }}
+  
+  {{ if eq $categoryConfig.type "single" }}
+    {{ with index $mappings $categoryConfig.key }}
+      {{ partial "pcspecs/spec-item.html" (dict 
+        "name"    $data
+        "icon"    .icon
+        "class"   .class
+        "dataTip" .dataTip
+        "page"    $page
+      ) }}
+    {{ end }}
+
+  {{ else if eq $categoryConfig.type "list" }}
+    {{ range $item := $data }}
+      {{ if and $item.name (ne $item.name "") }}
+        {{ with index $mappings $categoryConfig.key }}
+          {{ partial "pcspecs/spec-item.html" (dict 
+            "name"    $item.name
+            "icon"    .icon
+            "class"   .class
+            "dataTip" .dataTip
+            "page"    $page
+          ) }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+
+  {{ else if eq $categoryConfig.type "branded" }}
+    {{ range $brand := $categoryConfig.brandOrder }}
+      {{ $items := index $data $brand }}
+      {{ $config := index (index $mappings $categoryConfig.key) $brand }}
+      {{ if and $config $items }}
+        {{ range $items }}
+          {{ if and .name (ne .name "") }}
+            {{ partial "pcspecs/spec-item.html" (dict 
+              "name"    .name
+              "icon"    $config.icon
+              "class"   $config.class
+              "dataTip" $config.dataTip
+              "page"    $page
+            ) }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
