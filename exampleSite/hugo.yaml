@@ -24,6 +24,9 @@ disableKinds:
   - RSS
   - sitemap
 
+minify:
+  minifyOutput: true
+
 markup:
   goldmark:
     renderer:
