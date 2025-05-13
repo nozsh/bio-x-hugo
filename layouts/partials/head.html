@@ -89,7 +89,11 @@
     {{ if .IsHome }}
       {{ site.Title }}
     {{ else if eq .Type "profile" }}
-      bio@{{ .Title }}
+      {{ if .Params.Bio_text }}
+        bio@{{ .Params.Title }}
+      {{ else }}
+        {{ .Params.Title }}
+      {{ end }}
     {{ else if eq .Type "pcspecs" }}
       pc@{{ .Title }}
     {{ else }}
