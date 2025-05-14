@@ -54,11 +54,24 @@
   <link rel="apple-touch-icon" href="{{ $apple_touch_icon_180x180_png | default site.Params.assets.apple_touch_icon | absURL }}" sizes="180x180">
 {{ end }}
 
+{{ $title := ""}}
+{{ if .IsHome }}
+  {{ $title = site.Title }}
+{{ else if eq .Type "profile" }}
+  {{ if .Params.Bio_text }}
+    {{ $title = print "bio@" .Params.Title }}
+  {{ else }}
+    {{ $title = .Params.Title }}
+  {{ end }}
+{{ else if eq .Type "pcspecs" }}
+  {{ $title = print "specs@" .Params.Title }}
+{{ else }}
+  {{ $title = print .Title " - " .Site.Title }}
+{{ end }}
 
-
-<meta property="og:title" content="{{ if .Params.Bio_text }}bio@{{ .Params.Title }}{{ else }}{{ .Params.Title }}{{ end }}">
-<meta name="twitter:title" content="{{ if .Params.Bio_text }}bio@{{ .Params.Title }}{{ else }}{{ .Params.Title }}{{ end }}">
-<meta itemprop="name" content="{{ if .Params.Bio_text }}bio@{{ .Params.Title }}{{ else }}{{ .Params.Title }}{{ end }}">
+<meta property="og:title" content="{{ $title }}">
+<meta name="twitter:title" content="{{ $title }}">
+<meta itemprop="name" content="{{ $title }}">
 
 {{ if .Params.Desc.Text }}
   <meta name="description" content="{{ .Params.Desc.Text }}">
@@ -85,21 +98,7 @@
 
 {{/*  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>  */}}
 
-<title>
-    {{ if .IsHome }}
-      {{ site.Title }}
-    {{ else if eq .Type "profile" }}
-      {{ if .Params.Bio_text }}
-        bio@{{ .Params.Title }}
-      {{ else }}
-        {{ .Params.Title }}
-      {{ end }}
-    {{ else if eq .Type "pcspecs" }}
-      specs@{{ .Title }}
-    {{ else }}
-      {{ .Title }} - {{ .Site.Title }}
-    {{ end }}
-</title>
+<title>{{ $title }}</title>
 
 {{ $logo := (site.Params.Assets.preloadLogo | absURL) }}
 {{ if and (eq .Type "pcspecs") (or .Params.Specs.Type.Pc .Params.Specs.Type.Monoblock .Params.Specs.Type.NotebookLaptop) }}
