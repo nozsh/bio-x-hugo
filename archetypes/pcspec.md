@@ -151,3 +151,14 @@ specs:
   audioGear:
     - name: ""
 ---
+
+## BOX FANS
+
+| Mark | Pos                     |
+| ---- | ----------------------- |
+| F    | Front                   |
+| R    | Rear                    |
+| T    | Top                     |
+| B    | Bottom                  |
+| L    | Left side               |
+| S    | Side (right side, hard) |
