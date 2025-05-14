@@ -2,7 +2,7 @@
 {{ with .Params.Specs.Type }}
   {{ if or .Pc .Monoblock .NotebookLaptop }}
 
-    <div class="flex tooltip tooltip-open lg:tooltip-close lg:tooltip-left [--tt-tail:0px] [--tt-border:0] [--tt-bg:oklch(var(--n)/1)] cursor-default bg-base-300/35 border-1 border-gray-500/35 p-4 rounded-xl {{ if $page.Params.Background.Image }}backdrop-blur-lg{{ end }} bg-clip-padding bg-linear-to-r from-[#000000]/30 via-[#000000]/10 via-10% to-transparent">
+    <div class="flex tooltip tooltip-open lg:tooltip-close lg:tooltip-left [--tt-tail:0px] [--tt-border:0] [--tt-bg:oklch(var(--n)/1)] cursor-default bg-base-300/35 border-1 border-gray-500/35 p-4 rounded-xl {{ if $page.Params.Background.Image }}bg-base-300/75 sm:bg-base-300/35 sm:backdrop-blur-lg{{ end }} bg-clip-padding bg-linear-to-r from-[#000000]/30 via-[#000000]/10 via-10% to-transparent">
       
       <div class="tooltip-content bg-base-300/35 border-1 border-gray-500/35 px-4 rounded-xl {{ if $page.Params.Background.Image }}backdrop-blur-lg{{ end }}">
         <div class="text-md font-semibold">Typeof</div>
