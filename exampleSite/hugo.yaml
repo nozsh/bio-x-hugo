@@ -13,10 +13,11 @@ params:
     favicon32x32: "fav/favicon-32px.png"
     apple_touch_icon: "fav/favicon-180px.png"
     safari_pinned_tab: "fav/favicon.svg"
-    preloadLogo: "game-icons--bandit__n3gzQK.svg"
+    preloadLogo: "fav/favicon.svg"
+    preloadProfileLogo: "game-icons--bandit__n3gzQK.svg"
     preloadPCLogo: "simple-icons--pcgamingwiki__pQs8FJ.svg"
     preloadMonoBlockLogo: "pepicons-pop--monitor__h4Rmk9.svg"
-    preloadNotebookLaptoLogo: "game-icons--laptop__lcW4j6.svg"
+    preloadNotebookLaptopLogo: "game-icons--laptop__lcW4j6.svg"
 
 disableKinds:
   - taxonomy

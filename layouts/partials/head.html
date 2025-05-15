@@ -101,13 +101,15 @@
 <title>{{ $title }}</title>
 
 {{ $logo := (site.Params.Assets.preloadLogo | absURL) }}
-{{ if and (eq .Type "pcspecs") (or .Params.Specs.Type.Pc .Params.Specs.Type.Monoblock .Params.Specs.Type.NotebookLaptop) }}
+{{ if eq .Type "profile" }}
+  {{ $logo = (site.Params.Assets.preloadProfileLogo| absURL) }}
+{{ else if and (eq .Type "pcspecs") (or .Params.Specs.Type.Pc .Params.Specs.Type.Monoblock .Params.Specs.Type.NotebookLaptop) }}
   {{ if .Params.Specs.Type.Pc }}
     {{ $logo = (site.Params.Assets.preloadPCLogo | absURL) }}
   {{ else if .Params.Specs.Type.Monoblock }}
     {{ $logo = (site.Params.Assets.preloadMonoBlockLogo | absURL) }}
   {{ else }}
-    {{ $logo = (site.Params.Assets.preloadNotebookLaptoLogo | absURL) }}
+    {{ $logo = (site.Params.Assets.preloadNotebookLaptopLogo | absURL) }}
   {{ end }}
 {{ else }}
   {{ $logo = (site.Params.Assets.preloadLogo | absURL) }}

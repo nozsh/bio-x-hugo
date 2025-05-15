@@ -1,7 +1,4 @@
 {{ $logo := .logo }}
-{{ if eq .Page.Type "pcspecs" }}
-  {{ $logo = site.Params.Assets.preloadPCLogo | absURL }}
-{{ end }}
 
 <style>
   .no-scroll {
