@@ -1,0 +1,34 @@
+{{ define "main" }}
+  {{/*  <h1>{{ .Title }}</h1>  */}}
+
+  {{/*  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+  {{ $dateHuman := .Date | time.Format ":date_long" }}
+  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>  */}}
+
+  <div class="flex justify-center">
+    <div class="container{{ if .Params.ContainerClass }} {{ .Params.ContainerClass }}{{ end }}">
+      <div class="mt-8 p-4">
+        <div class="flex flex-col justify-center items-center">
+          {{- partial "profile-pic.html" . -}}
+
+          {{- partial "name.html" . -}}
+
+          {{- partial "desc.html" . -}}
+
+          {{- partial "location.html" . -}}
+
+          {{- partial "social.html" . -}}
+        </div>
+
+        <div class="mt-4 flex flex-col gap-4{{if .Params.ContentClass }} {{ .Params.ContentClass }}{{ end }}">
+          {{ .Content }}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  {{- partial "background.html" . -}}
+  
+  {{/*  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}  */}}
+{{ end }}
