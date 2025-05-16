@@ -1,6 +1,7 @@
 ---
 type: "pcspecs"
 draft: false
+noindex: true
 langOwn: "en"
 slug: ""
 preloader: true

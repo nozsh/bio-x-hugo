@@ -1,6 +1,7 @@
 ---
 type: "profile"
 draft: false
+noindex: true
 langOwn: "en"
 slug: ""
 preloader: true
