@@ -59,21 +59,9 @@
   <link rel="apple-touch-icon" href="{{ $apple_touch_icon_180x180_png | default site.Params.assets.apple_touch_icon | absURL }}" sizes="180x180">
 {{ end }}
 
-{{ $title := ""}}
-{{ if .IsHome }}
-  {{ $title = site.Title }}
-{{ else if eq .Type "profile" }}
-  {{ if .Params.Bio_text }}
-    {{ $title = print "bio@" .Params.Title }}
-  {{ else }}
-    {{ $title = .Params.Title }}
-  {{ end }}
-{{ else if eq .Type "pcspecs" }}
-  {{ $title = print "specs@" .Params.Title }}
-{{ else }}
-  {{ $title = print .Title " - " .Site.Title }}
-{{ end }}
+{{- $title := partial "title.html" . -}}
 
+<title>{{ $title }}</title>
 <meta property="og:title" content="{{ $title }}">
 <meta name="twitter:title" content="{{ $title }}">
 <meta itemprop="name" content="{{ $title }}">
@@ -87,8 +75,8 @@
 
 <meta property="og:type" content="website">
 
-{{ if .Params.Twitter_card }}
-  <meta name="twitter:card" content="{{ .Params.Twitter_card }}">
+{{ if .Params.TwitterCard }}
+  <meta name="twitter:card" content="{{ .Params.TwitterCard }}">
 {{ end }}
 
 {{ if .Params.Cover.Pic }}
@@ -101,26 +89,8 @@
   <meta name="twitter:image:alt" content="{{ .Params.Cover.Alt }}">
 {{ end }}
 
-{{/*  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>  */}}
-
-<title>{{ $title }}</title>
-
-{{ $logo := (site.Params.Assets.preloadLogo | absURL) }}
-{{ if eq .Type "profile" }}
-  {{ $logo = (site.Params.Assets.preloadProfileLogo| absURL) }}
-{{ else if and (eq .Type "pcspecs") (or .Params.Specs.Type.Pc .Params.Specs.Type.Monoblock .Params.Specs.Type.NotebookLaptop) }}
-  {{ if .Params.Specs.Type.Pc }}
-    {{ $logo = (site.Params.Assets.preloadPCLogo | absURL) }}
-  {{ else if .Params.Specs.Type.Monoblock }}
-    {{ $logo = (site.Params.Assets.preloadMonoBlockLogo | absURL) }}
-  {{ else }}
-    {{ $logo = (site.Params.Assets.preloadNotebookLaptopLogo | absURL) }}
-  {{ end }}
-{{ else }}
-  {{ $logo = (site.Params.Assets.preloadLogo | absURL) }}
-{{ end }}
-
 {{ if and (site.Params.Preloader) (.Params.Preloader) }}
+  {{ $logo := partial "preloader/logo.html" . -}}
   <link rel="preload" as="image" href="{{ $logo }}">
   {{ partial "preloader/head.html" (dict "logo" $logo ) }}
 {{ end }}

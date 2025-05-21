@@ -1,0 +1,7 @@
+{{ define "main" }}
+<div class="{{ if .Params.ContainerClass }}{{ .Params.ContainerClass }}{{ end }}">
+  <div class="{{ if .Params.ContentClass }}{{ .Params.ContentClass }}{{ end }}">
+    {{ .Content }}
+  </div>
+</div>
+{{ end }}

@@ -12,7 +12,8 @@ desc:
 cover:
   pic: ""
   alt: ""
-twitter_card: "summary"
+bioText: "specs@" # bio@xyz
+twitterCard: "summary"
 
 assets:
   favicon_on: true

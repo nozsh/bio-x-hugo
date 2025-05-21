@@ -1,0 +1,6 @@
+{{- $type := .Get "type" | default "box" -}}
+{{- $class := .Get "class" -}}
+
+<div class="tabs tabs-{{ $type }}{{ if $class }} {{ $class }}{{ end }}">
+  {{ .Inner }}
+</div>

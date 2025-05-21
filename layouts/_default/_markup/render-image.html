@@ -1,0 +1,19 @@
+{{- $u := urls.Parse .Destination -}}
+{{- $src := $u.Path -}}
+{{- $params := $u.Query -}}
+{{- $class := $params.Get "class" -}}
+{{- $width := $params.Get "width" -}}
+
+{{- $attributes := merge .Attributes (dict 
+    "alt"    .Text
+    "src"    (partial "utils/getAsset" $src)
+    "loading" "lazy"
+    "class"  $class
+    "width"  $width
+) -}}
+
+<img {{ range $k, $v := $attributes }}
+    {{- if $v -}}
+        {{- printf " %s=%q" $k $v | safeHTMLAttr -}}
+    {{- end -}}
+{{- end -}}>

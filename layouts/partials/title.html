@@ -1,0 +1,13 @@
+{{ $title := ""}}
+
+{{ if .IsHome }}
+  {{ $title = site.Title }}
+{{ else if .Params.bioText }}
+  {{ $title = print .Params.bioText .Params.Title }}
+{{ else if .Params.Title }}
+  {{ $title = .Params.Title }}
+{{ else }}
+  {{ $title = .Title }}
+{{ end }}
+
+{{- return $title -}}

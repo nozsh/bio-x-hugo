@@ -1,0 +1,9 @@
+{{- $src := . | safeURL -}}
+
+{{- $assetsPATH := site.Params.assets.assetsPATH -}}
+
+{{- if (hasPrefix $src $assetsPATH) -}}
+    {{- $src = replace $src $assetsPATH (printf "%s/" (partial "utils/getAssetFree.html" $src)) -}}
+{{- end -}}
+
+{{- return $src -}}

@@ -1,0 +1,25 @@
+{{ $preloadLogo := (site.Params.Assets.preloadLogo | absURL) }}
+
+{{ $logos := dict
+  "profile" (site.Params.Assets.preloadProfileLogo | absURL)
+  "donate"  (site.Params.Assets.preloadDonateLogo | absURL)
+  "pc"      (site.Params.Assets.preloadPCLogo | absURL)
+  "monoblock" (site.Params.Assets.preloadMonoBlockLogo | absURL)
+  "notebooklaptop" (site.Params.Assets.preloadNotebookLaptopLogo | absURL)
+}}
+
+{{ if eq .Type "pcspecs" }}
+  {{ if .Params.Specs.Type.Pc }}
+    {{ $preloadLogo = index $logos "pc" }}
+  {{ else if .Params.Specs.Type.Monoblock }}
+    {{ $preloadLogo = index $logos "monoblock" }}
+  {{ else if .Params.Specs.Type.NotebookLaptop }}
+    {{ $preloadLogo = index $logos "notebooklaptop" }}
+  {{ else }}
+    {{ $preloadLogo = index $logos "profile"}}
+  {{ end }}
+{{ else if index $logos .Type }}
+  {{ $preloadLogo = index $logos .Type }}
+{{ end }}
+
+{{- return $preloadLogo -}}

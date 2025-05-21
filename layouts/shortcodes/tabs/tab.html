@@ -1,0 +1,12 @@
+{{- $id := anchorize (.Parent.Get "id") | default "enter-some-id" -}}
+{{- $tabName := .Get "name" | default "Tab" -}}
+{{- $class := .Get "class" -}}
+{{- $classAll := .Parent.Get "tabClassAll" -}}
+{{- $contentClass := .Get "contentClass" -}}
+{{- $contentClassAll := .Parent.Get "tabContentClassAll" -}}
+
+<input type="radio" name="tab-{{ $id }}" class='tab{{ if $classAll }} {{ $classAll }}{{ end }}{{ if $class }} {{ $class }}{{ end }}' aria-label="{{ $tabName }}" {{ if .Get "checked" }}checked{{ end }} />
+
+<div class='tab-content bg-base-100 p-6 border{{ if $contentClassAll }} {{ $contentClassAll }}{{ end }}{{ if $contentClass }} {{ $contentClass }}{{ end }}'>
+  {{ .Inner }}
+</div>

@@ -1,3 +1,3 @@
 {{/*  https://github.com/justinribeiro/lite-youtube  */}}
 
-<lite-youtube class='{{ if .Get "class" }}{{ .Get "class" }}{{ end }}' nocookie videoid='{{ .Get "id" }}' playlistid='{{ .Get "playlistid" }}' videotitle='{{ .Get "title" }}' videoStartAt='{{ .Get "startAt" }}' params='{{ .Get "params" }}' posterquality='{{ .Get "posterquality" | default "maxresdefault" }}' posterloading='{{ .Get "posterloading" | default "eager" }}' {{ if .Get "short" }}short{{ end }}></lite-youtube>
+<lite-youtube class='{{ if .Get "class" }}{{ .Get "class" }}{{ end }}' nocookie videoid='{{ .Get "id" }}' playlistid='{{ .Get "playlistid" }}' videotitle='{{ .Get "title" }}' videoStartAt='{{ .Get "startAt" }}' params='{{ .Get "params" }}' posterquality='{{ .Get "posterquality" | default "maxresdefault" }}' posterloading='{{ .Get "posterloading" | default "lazy" }}' {{ if .Get "short" }}short{{ end }}></lite-youtube>
