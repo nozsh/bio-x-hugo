@@ -28,4 +28,15 @@ assets:
   svg: ""
 
 header: true
+
+background:
+  image: ""
+  imageOpacity: "1"
+  imageBlur: "0"
+  custom: ""
+  customOpacity: "1"
+  customPseudoBefore: ""
+  customPseudoBeforeOpacity: "1"
+  solid: ""
+  SolidOpacity: "1"
 ---
