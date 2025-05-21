@@ -4,13 +4,15 @@ noindex: false
 containerClass: "container max-w-full flex justify-center items-center h-screen"
 contentClass: "mt-8 p-4 flex justify-center items-center prose font-semibold"
 
+preloader: true
+
 title: "Home"
 cover:
   pic: ""
   alt: ""
 desc:
   text: ""
-twitter_card: "summary"
+twitterCard: "summary"
 assets:
   favicon_on: true
   favicon: ""

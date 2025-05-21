@@ -14,8 +14,8 @@ desc:
 cover:
   pic: ""
   alt: ""
-bio_text: true # bio@xyz
-twitter_card: "summary"
+bioText: "bio@" # bio@xyz
+twitterCard: "summary"
 
 assets:
   favicon_on: true
@@ -141,6 +141,8 @@ social:
 {{< /div >}}
 
 {{< desc class="p-4 rounded-2xl border-1 border-gray-500/35 backdrop-blur-lg" >}}
+
+some text
 
 ## About this **[hugo](https://gohugo.io/)** theme
 

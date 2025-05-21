@@ -18,6 +18,9 @@ params:
     preloadPCLogo: "simple-icons--pcgamingwiki__pQs8FJ.svg"
     preloadMonoBlockLogo: "pepicons-pop--monitor__h4Rmk9.svg"
     preloadNotebookLaptopLogo: "game-icons--laptop__lcW4j6.svg"
+    preloadDonateLogo: "game-icons--pay-money__vRV7P4.svg"
+    assetsURL: ""
+    assetsPATH: "@asset/"
 
 disableKinds:
   - taxonomy
