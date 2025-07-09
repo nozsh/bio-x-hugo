@@ -118,6 +118,9 @@ specs:
   fan:
     - name: ""
 
+  fansGear:
+    - name: ""
+
   # ---
 
   psu:

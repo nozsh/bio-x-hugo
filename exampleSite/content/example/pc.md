@@ -119,6 +119,9 @@ specs:
   fan:
     - name: "LIAN LI UNI FAN TL LCD 120 @ 124x120mm / 350-1900RPM / 3pcs pack"
 
+  fansGear:
+    - name: "ABC"
+
   # ---
 
   psu:
